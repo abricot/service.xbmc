@@ -501,6 +501,13 @@ angular.module('services.xbmc', ['services.io'])
       io.send('Addons.ExecuteAddon', params);
     }
 
+    factory.getAddonDetails = function (addonid, cb) {
+      io.send('Addons.GetAddonDetails', {
+        'addonid': addonid,
+        'properties': ['enabled'],
+      }, true, 'result').then(cb);
+    }
+
     return factory;
   }
 ])
