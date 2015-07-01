@@ -1,6 +1,6 @@
 "use strict";
 angular.module('services.jsonp', [])
-.factory('jsonp', ['$rootScope', '$q', '$http', '$parse', '$interpolate'
+.factory('jsonp', ['$rootScope', '$q', '$http', '$parse', '$interpolate',
   function ($rootScope, $q, $http, $parse, $interpolate) {
     // We return this object to anything injecting our service
     var factory = {};
