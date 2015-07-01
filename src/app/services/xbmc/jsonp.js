@@ -27,7 +27,7 @@ angular.module('services.jsonp', [])
     factory.unregister = function (method, callback) {
     };
 
-    factory.connect = function (request) {
+    factory.connect = function (partial, connectCallback, disconnectCallback) {
       urlFn = $interpolate('http://'+partial+'?request={{request}}&callback=JSON_CALLBACK');
       isConnected = true;
       connectCallback();
