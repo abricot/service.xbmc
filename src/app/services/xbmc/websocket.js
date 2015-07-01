@@ -27,6 +27,7 @@ angular.module('services.websocket', [])
   }
 
   factory.connect = function (url, connectCallback, disconnectCallback) {
+    url = 'ws://' + url;
     ws = new WebSocket(url);
     ws.onopen = function () {
       attempts = 1;

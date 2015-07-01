@@ -1,6 +1,6 @@
-angular.module('services.io', ['services.websocket'])
-.factory('io', ['$rootScope', '$q', '$parse', 'websocket',
-  function($rootScope, $q, $parse, websocket) {
+angular.module('services.io', ['services.jsonp'])
+.factory('io', ['$rootScope', '$q', '$parse', 'jsonp',
+  function($rootScope, $q, $parse, transport) {
     var factory = {};
     var callbacks = {};
     var currentCallbackId = 0;
@@ -29,7 +29,7 @@ angular.module('services.io', ['services.websocket'])
     };
 
     function onConnected() {
-      websocket.subscribe(onMessage.bind(this));
+      transport.subscribe(onMessage.bind(this));
       var onConnectedCallbacks = notifications['Websocket.OnConnected'] || [];
       for (var i = 0; i < onConnectedCallbacks.length; i++) {
         var cb = onConnectedCallbacks[i];
@@ -82,13 +82,13 @@ angular.module('services.io', ['services.websocket'])
         request.id = getCallbackId();
         var defer = getDefer(request.id, method, pathExpr);
       }
-      websocket.send(request);
+      transport.send(request);
       return shouldDefer ? defer.promise : 0;
     };
 
 
     factory.isConnected = function() {
-      return websocket.isConnected();
+      return transport.isConnected();
     };
 
     factory.register = function(method, callback) {
@@ -105,11 +105,11 @@ angular.module('services.io', ['services.websocket'])
     };
 
     factory.connect = function(url, port) {
-      websocket.connect('ws://' + url + ':' + port + '/jsonrpc', onConnected, onDiconnected);
+      transport.connect( url + ':' + port + '/jsonrpc', onConnected, onDiconnected);
     };
 
     factory.disconnect = function () {
-      websocket.disconnect();
+      transport.disconnect();
     };
 
     return factory;
