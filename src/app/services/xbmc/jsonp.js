@@ -28,7 +28,7 @@ angular.module('services.jsonp', [])
     };
 
     factory.connect = function (partial, connectCallback, disconnectCallback) {
-      urlFn = $interpolate('http://'+partial+'?request={{request}}&callback=JSON_CALLBACK');
+      urlFn = $interpolate('http://'+partial+'?request={{request}}');
       isConnected = true;
       connectCallback();
     };
