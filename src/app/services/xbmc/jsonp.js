@@ -6,7 +6,7 @@ angular.module('services.jsonp', [])
     var factory = {};
     var isConnected = false;
     var urlFn;
-
+    var msgCallback;
     factory.isConnected = function () {
       return isConnected;
     };
@@ -14,19 +14,12 @@ angular.module('services.jsonp', [])
     factory.register = function (method, callback) {
     };
 
-    factory.send = function (method, params, shouldDefer, pathExpr) {
+    factory.send = function (request) {
       var defer = $q.defer();
       var request =JSON.stringify(request);
       var url = urlFn({request : request})
       $http.jsonp(url).success(function (data) {
-        var obj = data;
-        if (pathExpr) {
-          var getter = $parse(pathExpr);
-          obj = getter(data);
-        } else {
-          obj = data;
-        }
-        defer.resolve(obj);
+        msgCallback(data);
       });
       return defer.promise;
     };
@@ -34,13 +27,14 @@ angular.module('services.jsonp', [])
     factory.unregister = function (method, callback) {
     };
 
-    factory.connect = function (partial, connectCallback, disconnectCallback) {
+    factory.connect = function (request) {
       urlFn = $interpolate('http://'+partial+'?request={{request}}&callback=JSON_CALLBACK');
       isConnected = true;
       connectCallback();
     };
     
     factory.subscribe = function (callback) {
+      msgCallback = callback
     };
 
     return factory;
