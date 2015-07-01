@@ -39,6 +39,9 @@ angular.module('services.jsonp', [])
       isConnected = true;
       connectCallback();
     };
+    
+    factory.subscribe = function (callback) {
+    };
 
     return factory;
   }
