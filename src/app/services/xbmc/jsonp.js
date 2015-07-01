@@ -16,9 +16,15 @@ angular.module('services.jsonp', [])
 
     factory.send = function (request) {
       var defer = $q.defer();
-      var request =JSON.stringify(request);
-      var url = urlFn({request : request})
-      $http.jsonp(url).success(function (data) {
+      var req = {
+       method: 'POST',
+       url: urlFn,
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       data: { request: request }
+      };
+      $http(req).success(function (data) {
         msgCallback(data);
       });
       return defer.promise;
@@ -28,7 +34,7 @@ angular.module('services.jsonp', [])
     };
 
     factory.connect = function (partial, connectCallback, disconnectCallback) {
-      urlFn = $interpolate('http://'+partial+'?request={{request}}');
+      urlFn = 'http://'+partial;
       isConnected = true;
       connectCallback();
     };
