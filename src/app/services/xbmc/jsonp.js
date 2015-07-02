@@ -22,10 +22,10 @@ angular.module('services.jsonp', [])
        headers: {
          'Content-Type': 'application/json'
        },
-       data: { request: request }
+       data: request
       };
       $http(req).success(function (data) {
-        msgCallback(data);
+        msgCallback(JSON.stringify({data:data}));
       });
       return defer.promise;
     };
@@ -38,7 +38,7 @@ angular.module('services.jsonp', [])
       isConnected = true;
       connectCallback();
     };
-    
+
     factory.subscribe = function (callback) {
       msgCallback = callback
     };
