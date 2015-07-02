@@ -56,7 +56,7 @@ angular.module('services.io', ['services.jsonp'])
             obj = getter(data);
           }
           console.log(data);
-          if(!$scope.$$phase) {
+          if(!$rootScope.$$phase) {
             $rootScope.$apply(callbacks[data.id].cb.resolve(obj));
           } else {
             callbacks[data.id].cb.resolve(obj);
