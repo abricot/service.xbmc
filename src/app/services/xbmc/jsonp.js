@@ -25,7 +25,7 @@ angular.module('services.jsonp', [])
        data: request
       };
       $http(req).success(function (data) {
-        msgCallback(JSON.stringify({data:data}));
+        msgCallback({data:JSON.stringify(data)});
       });
       return defer.promise;
     };

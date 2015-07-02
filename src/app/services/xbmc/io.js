@@ -56,7 +56,11 @@ angular.module('services.io', ['services.jsonp'])
             obj = getter(data);
           }
           console.log(data);
-          $rootScope.$apply(callbacks[data.id].cb.resolve(obj));
+          if(!$scope.$$phase) {
+            $rootScope.$apply(callbacks[data.id].cb.resolve(obj));
+          } else {
+            callbacks[data.id].cb.resolve(obj);
+          }
           delete callbacks[data.id];
         } else if (notifications[data.method] && notifications[data.method].length > 0) {
           for (var i = 0; i < notifications[data.method].length; i++) {
