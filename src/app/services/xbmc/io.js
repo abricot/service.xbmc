@@ -1,5 +1,5 @@
 angular.module('services.io', ['services.jsonp'])
-.factory('io', ['$rootScope', '$q', '$parse', 'jsonp',
+.factory('io', ['$rootScope', '$q', '$parse', 'websocket',
   function($rootScope, $q, $parse, transport) {
     var factory = {};
     var callbacks = {};
