@@ -1,4 +1,4 @@
-angular.module('services.io', ['services.jsonp'])
+angular.module('services.io', ['services.websocket'])
 .factory('io', ['$rootScope', '$q', '$parse', 'websocket',
   function($rootScope, $q, $parse, transport) {
     var factory = {};
