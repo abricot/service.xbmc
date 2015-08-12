@@ -412,7 +412,7 @@ angular.module('services.xbmc', ['services.io'])
         'tvshowid': tvShowId,
         'properties': ['title', 'genre', 'rating', 'thumbnail', 'plot', 'episode',
         'studio', 'fanart', 'episodeguide', 'season', 'imdbnumber','mpaa','cast',
-        'year' ],
+        'year',  'watchedepisodes', 'episode'],
       }, true, 'result.tvshowdetails').then(cb);
     };
 
