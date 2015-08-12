@@ -303,7 +303,7 @@ angular.module('services.xbmc', ['services.io'])
       io.send('VideoLibrary.GetMovieDetails', {
         'properties': ['title', 'genre', 'rating', 'thumbnail', 'plot', 'streamdetails',
         'studio', 'director', 'fanart', 'runtime', 'trailer', 'imdbnumber','mpaa','cast',
-        'writer', 'year','plotoutline', 'tagline', 'art', 'showlink', 'playcount'
+        'writer', 'year','plotoutline', 'tagline', 'art', 'showlink', 'playcount', 'resume'
         ],
         'movieid': movieId
       }, true, 'result.moviedetails').then(cb);
