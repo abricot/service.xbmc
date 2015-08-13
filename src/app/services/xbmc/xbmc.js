@@ -365,7 +365,9 @@ angular.module('services.xbmc', ['services.io'])
     factory.getArtistDetails = function(artistid, cb) {
       io.send('AudioLibrary.GetArtistDetails', {
         'artistid' : artistid,
-        'properties': ['formed', 'description', 'genre', 'thumbnail', 'fanart']
+        'properties': ['instrument', 'style', 'mood', 'born', 'formed', 
+                       'description', 'genre', 'died', 'disbanded', 
+                       'yearsactive', 'musicbrainzartistid', 'fanart', 'thumbnail']
       }, true, 'result.artistdetails').then(cb);
 
     };
