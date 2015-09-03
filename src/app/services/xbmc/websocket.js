@@ -31,7 +31,6 @@ angular.module('services.websocket', [])
       url = 'ws://' + url;
     }
     ws = new WebSocket(url);
-    ws = new WebSocket(url);
     ws.onopen = function () {
       attempts = 1;
       isWSConnected = true;
