@@ -65,7 +65,7 @@ angular.module('services.xbmc', ['services.io'])
     };
 
     factory.sendText = function (textToSend) {
-      io.send('Input.sendText', {'text' : textToSend});
+      io.send('Input.SendText', {'text' : textToSend});
     };
 
     factory.showOSD = function () {
@@ -365,8 +365,8 @@ angular.module('services.xbmc', ['services.io'])
     factory.getArtistDetails = function(artistid, cb) {
       io.send('AudioLibrary.GetArtistDetails', {
         'artistid' : artistid,
-        'properties': ['instrument', 'style', 'mood', 'born', 'formed', 
-                       'description', 'genre', 'died', 'disbanded', 
+        'properties': ['instrument', 'style', 'mood', 'born', 'formed',
+                       'description', 'genre', 'died', 'disbanded',
                        'yearsactive', 'musicbrainzartistid', 'fanart', 'thumbnail']
       }, true, 'result.artistdetails').then(cb);
 
